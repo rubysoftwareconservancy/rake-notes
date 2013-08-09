@@ -40,6 +40,7 @@ describe Rake::Notes::SourceAnnotationExtractor do
       fixture_file "Rakefile", "# TODO: note in rakefile"
       fixture_file "Puppetfile", "# TODO: note in puppetfile"
       fixture_file "Gemfile", "# TODO: note in gemfile"
+      fixture_file "feature.feature", "# TODO: note in cucumber feature"
     end
 
     it { should match(/note in erb/) }
@@ -59,6 +60,7 @@ describe Rake::Notes::SourceAnnotationExtractor do
     it { should match(/note in rakefile/) }
     it { should match(/note in puppetfile/) }
     it { should match(/note in gemfile/) }
+    it { should match(/note in cucumber feature/) }
   end
 
   def fixture_file(path, contents)

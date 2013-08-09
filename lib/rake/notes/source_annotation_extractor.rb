@@ -66,7 +66,7 @@ module Rake
 
           if File.directory?(item)
             results.update(find_in(item))
-          elsif item =~ /\.(builder|rb|coffee|rake|pp|ya?ml|gemspec)$/ || RUBYFILES.include?(File.basename(item))
+          elsif item =~ /\.(builder|rb|coffee|rake|pp|ya?ml|gemspec|feature)$/ || RUBYFILES.include?(File.basename(item))
             results.update(extract_annotations_from(item, /#\s*(#{tag}):?\s*(.*)$/))
           elsif item =~ /\.(css|scss|js)$/
             results.update(extract_annotations_from(item, /\/\/\s*(#{tag}):?\s*(.*)$/))
