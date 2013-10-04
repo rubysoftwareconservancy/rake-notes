@@ -1,3 +1,5 @@
+require 'colored'
+
 module Rake
   module Notes
     # From:
@@ -22,13 +24,11 @@ module Rake
 
       class Annotation < Struct.new(:line, :tag, :text)
 
-        #          ["OPTIMIZE", "FIXME", "TODO"].
         COLORS = {
           'OPTIMIZE' => 'cyan',
           'FIXME' => 'magenta',
           'TODO' => 'yellow'
         }
-
 
         # Returns a representation of the annotation that looks like this:
         #
