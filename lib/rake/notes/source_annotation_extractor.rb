@@ -1,3 +1,5 @@
+require 'colored'
+
 module Rake
   module Notes
     # From:
@@ -21,6 +23,13 @@ module Rake
       RUBYFILES = %w( Vagrantfile Rakefile Puppetfile Gemfile )
 
       class Annotation < Struct.new(:line, :tag, :text)
+
+        COLORS = {
+          'OPTIMIZE' => 'cyan',
+          'FIXME' => 'magenta',
+          'TODO' => 'yellow'
+        }
+
         # Returns a representation of the annotation that looks like this:
         #
         #   [126] [TODO] This algorithm is simple and clearly correct, make it faster.
@@ -28,8 +37,9 @@ module Rake
         # If +options+ has a flag <tt>:tag</tt> the tag is shown as in the example above.
         # Otherwise the string contains just line and text.
         def to_s(options={})
-          s = "[#{line.to_s.rjust(options[:indent])}] "
-          s << "[#{tag}] " if options[:tag]
+          colored_tag = COLORS[tag.to_s].nil? ? tag : tag.send(COLORS[tag.to_s])
+          s = "[#{line.to_s.rjust(options[:indent]).green}] "
+          s << "[#{colored_tag}] " if options[:tag]
           s << text
         end
       end
