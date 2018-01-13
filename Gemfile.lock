@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rake-notes (0.2.0)
+    rake-notes (0.2.1)
       colored
       rake
 
@@ -26,3 +26,6 @@ PLATFORMS
 DEPENDENCIES
   rake-notes!
   rspec
+
+BUNDLED WITH
+   1.16.0
