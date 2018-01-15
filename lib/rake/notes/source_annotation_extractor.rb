@@ -1,4 +1,5 @@
 require 'colored'
+require 'yaml'
 
 module Rake
   module Notes
@@ -23,7 +24,15 @@ module Rake
       RUBYFILES = %w( Vagrantfile Rakefile Puppetfile Gemfile )
       # `gem install --standalone` puts gems into $project/bundle and it really slows
       # down the rake task
-      IGNORE_DIRS = [ './bundle' ]
+      DEFAULT_IGNORE_DIRS = { 'ignore' => [ './bundle', './vendor' ] }
+
+      def self.ignore_dirs
+        @ignore_dirs ||= begin
+          config = DEFAULT_IGNORE_DIRS
+          config = config.merge(YAML.safe_load(File.read('./.rake-notes.yml'))) if File.exist?('./.rake-notes.yml')
+          config['ignore'] || []
+        end
+      end
 
       class Annotation < Struct.new(:line, :tag, :text)
         COLORS = {
@@ -76,7 +85,7 @@ module Rake
           next if File.basename(item)[0] == ?.
 
           if File.directory?(item)
-            next if IGNORE_DIRS.include?(item)
+            next if SourceAnnotationExtractor.ignore_dirs.include?(item)
             results.update(find_in(item))
           elsif item =~ /\.(builder|rb|coffee|rake|pp|ya?ml|gemspec|feature)$/ || RUBYFILES.include?(File.basename(item))
             results.update(extract_annotations_from(item, /#\s*(#{tag}):?\s*(.*)$/))
