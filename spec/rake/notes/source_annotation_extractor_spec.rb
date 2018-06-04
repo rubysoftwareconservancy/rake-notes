@@ -30,6 +30,8 @@ describe Rake::Notes::SourceAnnotationExtractor do
       fixture_file "application.js", "// TODO: note in js"
       fixture_file "application.css", "// TODO: note in css"
       fixture_file "application.css.scss", "// TODO: note in scss"
+      fixture_file "component.tsx", "// TODO: note in tsx"
+      fixture_file "application.ts", "// TODO note in ts"
       fixture_file "application_controller.rb", 1000.times.map { "" }.join("\n") << "# TODO: note in ruby"
       fixture_file "task.rake", "# TODO: note in rake"
       fixture_file "init.pp", "# TODO: note in puppet"
@@ -51,6 +53,8 @@ describe Rake::Notes::SourceAnnotationExtractor do
     it { should match(/note in js/) }
     it { should match(/note in css/) }
     it { should match(/note in scss/) }
+    it { should match(/note in tsx/) }
+    it { should match(/note in ts/) }
     it { should match(/note in rake/) }
     it { should match(/note in puppet/) }
     it { should match(/note in yml/) }
