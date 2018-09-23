@@ -97,6 +97,8 @@ module Rake
             results.update(extract_annotations_from(item, /-\s*#\s*(#{tag}):?\s*(.*)$/))
           elsif item =~ /\.slim$/
             results.update(extract_annotations_from(item, /\/\s*\s*(#{tag}):?\s*(.*)$/))
+          elsif item =~ /\.md$/
+            results.update(extract_annotations_from(item, /\*\*\s*(#{tag})\**:?\s*(.*)\**$/))
           end
         end
 
