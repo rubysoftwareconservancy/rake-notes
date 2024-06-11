@@ -1,5 +1,5 @@
 module Rake
   module Notes
-    VERSION = "0.2.2"
+    VERSION = "1.0.0.beta"
   end
 end
