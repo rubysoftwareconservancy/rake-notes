@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rake-notes (0.2.2)
+    rake-notes (1.0.0.beta)
       colored
       rake
 
