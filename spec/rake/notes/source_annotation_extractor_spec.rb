@@ -3,8 +3,6 @@ require 'spec_helper'
 require 'rake/notes/source_annotation_extractor'
 
 describe Rake::Notes::SourceAnnotationExtractor do
-  let(:fixture_path) { "#{Dir.pwd}/.tmp" }
-
   before do
     @current_path = Dir.pwd
     Dir.mkdir(fixture_path) unless Dir.exist?(fixture_path)
@@ -76,5 +74,9 @@ describe Rake::Notes::SourceAnnotationExtractor do
     File.open("#{fixture_path}/#{path}", 'w') do |f|
       f.puts contents
     end
+  end
+
+  def fixture_path
+    "#{Dir.pwd}/.tmp"
   end
 end
