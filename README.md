@@ -1,5 +1,7 @@
 # rake-notes
 
+[![Sponsored by CloudBreak](https://cloudbreak.app/promotional_banner.svg?source=rake_notes_readme)](https://cloudbreak.app/promotional_banner/visit?source=rake_notes_readme)
+
 `rake notes` task for non-Rails' projects (heavily based on Rails' one ;)
 
 ## Installation
